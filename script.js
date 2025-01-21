@@ -49,5 +49,17 @@ rightArrow.addEventListener("click", () => {
   }
 });
 
+// Function to shuffle questions
+function shuffleQuestions() {
+  for (let i = questions.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [questions[i], questions[j]] = [questions[j], questions[i]];
+  }
+  console.log("Questions shuffled:", questions); // Debugging
+  // Optional: Update the UI with the shuffled questions
+}
+document
+  .getElementById("randomize-btn")
+  .addEventListener("click", shuffleQuestions);
 // Load the first question
 loadQuestion(currentQuestionIndex);
