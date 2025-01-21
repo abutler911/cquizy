@@ -141,3 +141,37 @@ body {
   animation: pulse 1.5s infinite;
   transition: all 0.3s ease;
 }
+
+/* Keyframes for fade-out effect */
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+
+/* Keyframes for fade-in effect */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Card fade-out animation class */
+.fade-out {
+  animation: fadeOut 0.5s forwards;
+}
+
+/* Card fade-in animation class */
+.fade-in {
+  animation: fadeIn 0.5s forwards;
+}

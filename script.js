@@ -51,15 +51,37 @@ rightArrow.addEventListener("click", () => {
 
 // Function to shuffle questions
 function shuffleQuestions() {
-  for (let i = questions.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [questions[i], questions[j]] = [questions[j], questions[i]];
-  }
-  console.log("Questions shuffled:", questions); // Debugging
-  // Optional: Update the UI with the shuffled questions
+  // Add the fade-out class to start the animation
+  cardInner.classList.add("fade-out");
+
+  // Wait for the fade-out animation to complete
+  setTimeout(() => {
+    // Shuffle the questions
+    for (let i = questions.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [questions[i], questions[j]] = [questions[j], questions[i]];
+    }
+    console.log("Questions shuffled:", questions); // Debugging
+
+    // Load the first question from the shuffled list
+    currentQuestionIndex = 0;
+    loadQuestion(currentQuestionIndex);
+
+    // Add the fade-in class
+    cardInner.classList.remove("fade-out");
+    cardInner.classList.add("fade-in");
+
+    // Remove the fade-in class after the animation
+    setTimeout(() => {
+      cardInner.classList.remove("fade-in");
+    }, 500); // Match the fade-in duration
+  }, 500); // Match the fade-out duration
 }
+
+// Event listener for the randomize button
 document
   .getElementById("randomize-btn")
   .addEventListener("click", shuffleQuestions);
+
 // Load the first question
 loadQuestion(currentQuestionIndex);
