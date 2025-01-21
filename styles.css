@@ -66,10 +66,10 @@ body {
 }
 
 .category {
-  font-size: 1rem;
+  font-size: 0.6rem;
   font-weight: 500;
   text-transform: uppercase;
-  color: #6c757d;
+  color: #878c91;
   position: absolute;
   top: 15px;
   left: 15px;
@@ -82,7 +82,7 @@ body {
 }
 
 .answer {
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   font-weight: 700;
   text-align: center;
   line-height: 1.8;
@@ -119,6 +119,10 @@ body {
   outline: none;
 }
 
+#instructions {
+  font-size: 0.8rem;
+  margin-top: 10px;
+}
 @keyframes pulse {
   0% {
     box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
@@ -174,4 +178,37 @@ body {
 /* Card fade-in animation class */
 .fade-in {
   animation: fadeIn 0.5s forwards;
+}
+
+.shooting-stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  opacity: 0;
+  animation: shoot linear infinite;
+}
+
+@keyframes shoot {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--end-x), var(--end-y)) scale(var(--scale));
+  }
 }
