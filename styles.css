@@ -204,11 +204,12 @@ body {
 
 .star {
   position: absolute;
-  width: 2px;
-  height: 2px;
+  width: 4px;
+  height: 4px;
   background-color: #fff;
   border-radius: 50%;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 22px 7px rgba(255, 255, 255, 0.8);
+
   opacity: 0;
   animation: shoot linear infinite;
 }
