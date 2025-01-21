@@ -1,6 +1,7 @@
 const questions = [
   {
     category: "Pre-Departure Ground Ops",
+    context: "Cold dark flight deck, batteries 1 and 2 selected on",
     question: "What is the minimum voltage for batteries 1 & 2?",
     answer:
       "Above 22.5 or if between 21.0 and 22.5 with the recharge procedure",

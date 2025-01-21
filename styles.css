@@ -75,6 +75,16 @@ body {
   left: 15px;
 }
 
+.context {
+  font-size: 0.4rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  color: #878c91;
+  position: absolute;
+  top: calc(15px + 0.8rem); /* Adjust position below the category */
+  left: 15px; /* Align with the category */
+}
+
 .question {
   font-size: 1.3rem;
   font-weight: 500;

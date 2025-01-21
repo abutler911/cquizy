@@ -6,6 +6,7 @@ const leftArrow = document.querySelector(".left-arrow");
 const rightArrow = document.querySelector(".right-arrow");
 
 const categoryElement = cardFront.querySelector(".category");
+const questionContextElement = cardFront.querySelector(".context");
 const questionElement = cardFront.querySelector(".question");
 const answerElement = cardBack.querySelector(".answer");
 
@@ -14,8 +15,9 @@ let currentQuestionIndex = 0;
 // Load a question onto the card
 function loadQuestion(index) {
   if (index >= 0 && index < questions.length) {
-    const { category, question, answer } = questions[index];
+    const { category, context, question, answer } = questions[index];
     categoryElement.textContent = category;
+    questionContextElement.textContent = `Context: ${context}` || context;
     questionElement.textContent = question;
     answerElement.textContent = answer;
 
