@@ -30,4 +30,21 @@ const questions = [
       "BATT 1 OVERTEMP is displayed on the EICAS. What is the procedure?",
     answer: "Memory item, QRC",
   },
+  {
+    category: "Pre-Departure Ground Ops",
+    question:
+      "What is the minimum hydraulic reservoir temperature for engine start?",
+    answer: "-18C",
+  },
+  {
+    category: "Pre-Departure Ground Ops",
+    question: "What is the maximum fuel capacity?",
+    answer: "20,XXX lbs",
+  },
+  {
+    category: "Pre-Departure Ground Ops",
+    question:
+      "During fueling ops, a FUEL IMBALANCE caution message is presented on the EICAS, what is the maximum fuel imbalance?",
+    answer: "794 lbs",
+  },
 ];
