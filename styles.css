@@ -1,0 +1,106 @@
+body {
+  background-color: #f8f9fa;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+.card-container {
+  perspective: 1000px;
+  width: 90%;
+  max-width: 400px;
+  aspect-ratio: 3 / 4;
+  position: relative;
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s;
+}
+
+.card-inner.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border: 2px solid #28a745;
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+.card-front {
+  background-color: #ffffff;
+}
+
+.card-back {
+  background-color: #28a745;
+  color: #ffffff;
+  transform: rotateY(180deg);
+}
+
+.category {
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #6c757d;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+}
+
+.question {
+  font-size: 1.8rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.answer {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.8;
+}
+
+/* Arrow container styling */
+.arrow-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.arrow-btn {
+  background-color: #28a745;
+  color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.arrow-btn:hover {
+  background-color: #1e7e34;
+}
+
+.arrow-btn:focus {
+  outline: none;
+}
