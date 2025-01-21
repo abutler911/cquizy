@@ -55,21 +55,22 @@ body {
   box-sizing: border-box;
 }
 
-.card-front {
-  background-color: #ffffff;
-}
-
 .card-back {
   background-color: #28a745;
   color: #ffffff;
   transform: rotateY(180deg);
 }
 
+.card-front {
+  background-color: #e6e6e6;
+  color: #000;
+}
+
 .category {
   font-size: 0.6rem;
   font-weight: 500;
   text-transform: uppercase;
-  color: #878c91;
+  color: gray;
   position: absolute;
   top: 15px;
   left: 15px;
@@ -79,7 +80,7 @@ body {
   font-size: 0.4rem;
   font-weight: 300;
   text-transform: uppercase;
-  color: #878c91;
+  color: rgb(102, 102, 102);
   position: absolute;
   top: calc(15px + 0.8rem);
   left: 15px;
@@ -132,6 +133,7 @@ body {
 #instructions {
   font-size: 0.8rem;
   margin-top: 5px;
+  color: rgb(126, 126, 126);
 }
 
 @keyframes pulse {
