@@ -9,7 +9,7 @@ const questions = [
   {
     category: "Pre-Departure Ground Ops",
     context: "Cold dark flight deck, battery 1 selected on",
-    question: "What is the procedure is the battery voltage is below 22.5V?",
+    question: "What is the procedure if the battery voltage is below 22.5V?",
     answer: "Use the recharge procedure in the SOPM.",
   },
   {

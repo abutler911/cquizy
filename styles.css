@@ -16,22 +16,22 @@ header {
   letter-spacing: 0.5rem;
 }
 .card-container {
-  perspective: 800px; /* Perspective for 3D effect */
-  width: 90%; /* Maintain responsiveness */
-  max-width: 400px; /* Limit maximum width */
-  aspect-ratio: 3 / 3.5; /* Adjust aspect ratio for a shorter height */
+  perspective: 800px;
+  width: 90%;
+  max-width: 400px;
+  aspect-ratio: 3 / 3.5;
   position: relative;
-  height: auto; /* Let aspect-ratio determine height */
+  height: auto;
 }
 
 .card-inner {
   width: 100%;
-  height: 100%; /* Match container height */
+  height: 100%;
   position: relative;
   transform-style: preserve-3d;
-  transition: transform 0.8s; /* Smooth flip effect */
-  box-shadow: 0 0 15px rgba(0, 255, 0, 0.5); /* Glow effect */
-  border-radius: 15px; /* Rounded corners */
+  transition: transform 0.8s;
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+  border-radius: 15px;
 }
 @keyframes glow {
   0% {
@@ -212,7 +212,7 @@ header {
   height: 100%;
   pointer-events: none;
   overflow: hidden;
-  z-index: -1; /* Keep stars behind other content */
+  z-index: -1;
 }
 
 .star {
@@ -229,11 +229,11 @@ header {
 
 @keyframes shoot {
   0% {
-    opacity: 1; /* Star becomes visible immediately */
+    opacity: 1;
     transform: translate(0, 0) scale(1);
   }
   100% {
-    opacity: 0; /* Fades out while moving */
+    opacity: 0;
     transform: translate(var(--end-x), var(--end-y)) scale(var(--scale));
   }
 }
