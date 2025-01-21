@@ -188,7 +188,7 @@ body {
   height: 100%;
   pointer-events: none;
   overflow: hidden;
-  z-index: -1;
+  z-index: -1; /* Keep stars behind other content */
 }
 
 .star {
@@ -204,11 +204,11 @@ body {
 
 @keyframes shoot {
   0% {
-    opacity: 1;
+    opacity: 1; /* Star becomes visible immediately */
     transform: translate(0, 0) scale(1);
   }
   100% {
-    opacity: 0;
+    opacity: 0; /* Fades out while moving */
     transform: translate(var(--end-x), var(--end-y)) scale(var(--scale));
   }
 }

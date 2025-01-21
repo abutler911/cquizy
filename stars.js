@@ -17,8 +17,7 @@ function createShootingStar() {
   const scale = Math.random() * 0.5 + 0.5; // Range: 0.5 to 1
   const brightness = Math.random() * 0.8 + 0.2; // Range: 0.2 to 1
 
-  // Randomize animation timing
-  const delay = Math.random() * 5; // Up to 5 seconds delay
+  // Randomize animation duration
   const duration = Math.random() * 3 + 2; // Between 2-5 seconds duration
 
   // Set styles for the star
@@ -27,7 +26,6 @@ function createShootingStar() {
   star.style.setProperty("--end-x", `${endX}px`);
   star.style.setProperty("--end-y", `${endY}px`);
   star.style.setProperty("--scale", scale);
-  star.style.animationDelay = `${delay}s`;
   star.style.animationDuration = `${duration}s`;
   star.style.opacity = brightness;
 
@@ -37,10 +35,10 @@ function createShootingStar() {
   // Remove the star after the animation
   setTimeout(() => {
     shootingStarsContainer.removeChild(star);
-  }, (delay + duration) * 1000);
+  }, duration * 1000); // Remove after the animation ends
 }
 
-// Generate stars at intervals (more frequent and random)
+// Generate stars at intervals (frequent and random)
 setInterval(() => {
   const starCount = Math.floor(Math.random() * 3) + 1; // 1 to 3 stars at a time
   for (let i = 0; i < starCount; i++) {
