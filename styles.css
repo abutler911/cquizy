@@ -81,8 +81,8 @@ body {
   text-transform: uppercase;
   color: #878c91;
   position: absolute;
-  top: calc(15px + 0.8rem); /* Adjust position below the category */
-  left: 15px; /* Align with the category */
+  top: calc(15px + 0.8rem);
+  left: 15px;
 }
 
 .question {
