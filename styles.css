@@ -23,7 +23,7 @@ header {
   perspective: 1000px;
   width: 80%;
   max-width: 350px;
-  aspect-ratio: 2 / 3;
+  aspect-ratio: 5 / 6;
   position: relative;
   margin: 10px auto;
 }
