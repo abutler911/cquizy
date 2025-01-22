@@ -1,7 +1,7 @@
 body {
   background-color: #000;
   margin: 0;
-  font-family: "Poppins", sans-serif;
+  font-family: "Red Hat Text", sans-serif;
 }
 
 header {
@@ -21,11 +21,11 @@ header {
 
 .card-container {
   perspective: 1000px;
-  width: 90%;
-  max-width: 400px;
-  aspect-ratio: 3 / 3.5;
+  width: 80%;
+  max-width: 350px;
+  aspect-ratio: 2 / 3;
   position: relative;
-  margin: 20px auto;
+  margin: 10px auto;
 }
 
 .card-inner {
@@ -88,6 +88,7 @@ header {
   background: linear-gradient(145deg, #28a745, #1e7e34);
   color: #ffffff;
   transform: rotateY(180deg);
+  border: 1px solid #fff;
 }
 
 .category {
@@ -115,14 +116,14 @@ header {
 }
 
 .question {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 600;
   text-align: center;
   color: #333;
 }
 
 .answer {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 700;
   text-align: center;
   line-height: 1.8;
@@ -163,8 +164,9 @@ header {
 
 #instructions {
   font-size: 1rem;
-  margin-top: 5px;
+  margin: 5px 0 10px;
   color: #cccccc;
+  text-align: center;
 }
 
 @keyframes pulse {
@@ -181,18 +183,25 @@ header {
 
 #randomize-btn {
   background: linear-gradient(145deg, #28a745, #1e7e34);
-  color: #fff;
-  font-size: 1.3rem;
+  color: #ffffff;
+  font-size: 1.5rem; /* Adjust size for the icon */
   border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
+  border-radius: 50%; /* Make it a circular button */
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
-  animation: pulse 1.5s infinite;
-  transition: background 0.3s ease;
 }
 
 #randomize-btn:hover {
   background: linear-gradient(145deg, #1e7e34, #28a745);
+  transform: scale(1.1); /* Slight scaling effect on hover */
+}
+
+#randomize-btn i {
+  font-size: 1.5rem; /* Icon size */
 }
 
 /* Keyframes for fade-out effect */
@@ -261,4 +270,72 @@ header {
     opacity: 0;
     transform: translate(var(--end-x), var(--end-y)) scale(var(--scale));
   }
+}
+
+.control-panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  background: linear-gradient(145deg, #1e1e1e, #333);
+  border: 2px solid #28a745;
+  border-radius: 15px;
+  padding: 10px 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  width: 90%;
+  max-width: 350px;
+  margin: 10px auto 5px;
+}
+
+.arrow-btn,
+.randomize-btn {
+  background: linear-gradient(145deg, #28a745, #1e7e34);
+  color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s, background 0.3s ease-in-out;
+}
+
+.arrow-btn:hover,
+.randomize-btn:hover {
+  background: linear-gradient(145deg, #1e7e34, #28a745);
+  transform: scale(1.1);
+}
+
+.arrow-btn i,
+.randomize-btn i {
+  font-size: 1.2rem;
+}
+
+.randomize-btn {
+  width: 60px;
+  height: 60px;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 255, 0, 1);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+  }
+}
+
+footer {
+  background: linear-gradient(90deg, #28a745, #1e7e34);
+  color: #fff;
+
+  font-size: 0.8rem;
+  margin-top: 15px;
 }
