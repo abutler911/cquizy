@@ -22,7 +22,8 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="shooting-stars"></div>
+    <div class="starfield"></div>
+
     <!-- Title -->
     <header class="text-center py-2">
       <h1 class="title">CQuizy</h1>
@@ -48,21 +49,20 @@
           </div>
         </div>
       </div>
-      <div>
+
+      <div class="control-panel">
         <p id="instructions">Click card to see answer</p>
-      </div>
-      <!-- Navigation Arrows -->
-      <!-- Control Panel -->
-      <div class="control-panel mt-4">
-        <button class="arrow-btn left-arrow">
-          <i class="fas fa-chevron-left"></i>
-        </button>
-        <button class="btn randomize-btn" id="randomize-btn">
-          <i class="fas fa-random"></i>
-        </button>
-        <button class="arrow-btn right-arrow">
-          <i class="fas fa-chevron-right"></i>
-        </button>
+        <div class="button-group">
+          <button class="arrow-btn left-arrow">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="btn randomize-btn" id="randomize-btn">
+            <i class="fas fa-random"></i>
+          </button>
+          <button class="arrow-btn right-arrow">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
       </div>
     </div>
 

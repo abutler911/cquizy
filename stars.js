@@ -1,47 +1,53 @@
-function createShootingStar() {
-  const shootingStarsContainer = document.querySelector(".shooting-stars");
+document.addEventListener("DOMContentLoaded", () => {
+  const starfield = document.querySelector(".starfield");
 
-  // Create a star element
-  const star = document.createElement("div");
-  star.classList.add("star");
+  // Generate Static Stars
+  const createStars = (numStars) => {
+    for (let i = 0; i < numStars; i++) {
+      const star = document.createElement("div");
+      star.className = "star";
 
-  // Randomize the starting position
-  const startX = Math.random() * window.innerWidth;
-  const startY = Math.random() * window.innerHeight;
+      // Random position for the star
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.top = `${Math.random() * 100}%`;
 
-  // Randomize the ending position and direction
-  const endX = (Math.random() - 0.5) * 2000;
-  const endY = (Math.random() - 0.5) * 2000;
+      // Random size for variation
+      const size = Math.random() * 2 + 1; // Between 1px and 3px
+      star.style.width = `${size}px`;
+      star.style.height = `${size}px`;
 
-  // Randomize size and brightness
-  const scale = Math.random() * 0.5 + 0.5;
-  const brightness = Math.random() * 0.8 + 0.2;
+      starfield.appendChild(star);
+    }
+  };
 
-  // Randomize animation duration
-  const duration = Math.random() * 3 + 2;
+  // Generate Comets
+  const createComet = () => {
+    const comet = document.createElement("div");
+    comet.className = "comet";
 
-  // Set styles for the star
-  star.style.left = `${startX}px`;
-  star.style.top = `${startY}px`;
-  star.style.setProperty("--end-x", `${endX}px`);
-  star.style.setProperty("--end-y", `${endY}px`);
-  star.style.setProperty("--scale", scale);
-  star.style.animationDuration = `${duration}s`;
-  star.style.opacity = brightness;
+    // Random starting point
+    const startX = Math.random() * window.innerWidth;
+    const startY = Math.random() * window.innerHeight;
 
-  // Add the star to the container
-  shootingStarsContainer.appendChild(star);
+    comet.style.left = `${startX}px`;
+    comet.style.top = `${startY}px`;
 
-  // Remove the star after the animation
-  setTimeout(() => {
-    shootingStarsContainer.removeChild(star);
-  }, duration * 1000);
-}
+    // Append comet to the starfield
+    starfield.appendChild(comet);
 
-// Generate stars at intervals (frequent and random)
-setInterval(() => {
-  const starCount = Math.floor(Math.random() * 3) + 1;
-  for (let i = 0; i < starCount; i++) {
-    createShootingStar();
-  }
-}, 800);
+    // Remove the comet after animation
+    setTimeout(() => {
+      starfield.removeChild(comet);
+    }, 5000); // Match animation duration
+  };
+
+  // Create initial stars
+  createStars(150);
+
+  // Add comets occasionally
+  setInterval(() => {
+    if (Math.random() < 0.3) {
+      createComet();
+    }
+  }, 3000); // Try every 3 seconds
+});

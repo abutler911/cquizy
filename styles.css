@@ -34,24 +34,8 @@ header {
   position: relative;
   transform-style: preserve-3d;
   transition: transform 0.8s, box-shadow 0.3s ease-in-out;
-  box-shadow: 0 0 25px rgba(0, 255, 0, 0.5), 0 0 50px rgba(0, 255, 0, 0.2);
+
   border-radius: 15px;
-}
-
-.card-inner:hover {
-  box-shadow: 0 0 40px rgba(0, 255, 0, 0.8), 0 0 60px rgba(0, 255, 0, 0.3);
-}
-
-@keyframes glow {
-  0% {
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 25px rgba(0, 255, 0, 0.7);
-  }
-  100% {
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
-  }
 }
 
 .card-inner.is-flipped {
@@ -75,7 +59,7 @@ header {
 
 .card-front {
   background: linear-gradient(145deg, #ffffff, #e6e6e6);
-  border: 2px solid #28a745;
+  border: 1px solid #28a745;
   color: #000;
   transition: background 0.5s ease;
 }
@@ -92,21 +76,19 @@ header {
 }
 
 .category {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
   color: #28a745;
   background-color: transparent;
   padding: 2px 5px;
-  border-radius: 5px;
-  /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); */
   position: absolute;
   top: 10px;
   left: 10px;
 }
 
 .context {
-  font-size: 0.4rem;
+  font-size: 0.5rem;
   font-weight: 300;
   text-transform: uppercase;
   color: rgb(102, 102, 102);
@@ -163,30 +145,18 @@ header {
 }
 
 #instructions {
-  font-size: 1rem;
-  margin: 5px 0 10px;
+  font-size: 0.9rem;
   color: #cccccc;
+  margin-bottom: 5px;
   text-align: center;
-}
-
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
-  }
-  50% {
-    box-shadow: 0 0 20px rgba(0, 255, 0, 1);
-  }
-  100% {
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
-  }
 }
 
 #randomize-btn {
   background: linear-gradient(145deg, #28a745, #1e7e34);
   color: #ffffff;
-  font-size: 1.5rem; /* Adjust size for the icon */
+  font-size: 1.5rem;
   border: none;
-  border-radius: 50%; /* Make it a circular button */
+  border-radius: 50%;
   width: 60px;
   height: 60px;
   display: flex;
@@ -204,87 +174,27 @@ header {
   font-size: 1.5rem; /* Icon size */
 }
 
-/* Keyframes for fade-out effect */
-@keyframes fadeOut {
-  0% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(0.5);
-  }
-}
-
-/* Keyframes for fade-in effect */
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.5);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* Card fade-out animation class */
-.fade-out {
-  animation: fadeOut 0.5s forwards;
-}
-
-/* Card fade-in animation class */
-.fade-in {
-  animation: fadeIn 0.5s forwards;
-}
-
-.shooting-stars {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: -1;
-}
-
-.star {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  background-color: #fff;
-  border-radius: 50%;
-  box-shadow: 0 0 22px 7px rgba(255, 255, 255, 0.8);
-
-  opacity: 0;
-  animation: shoot linear infinite;
-}
-
-@keyframes shoot {
-  0% {
-    opacity: 1;
-    transform: translate(0, 0) scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(var(--end-x), var(--end-y)) scale(var(--scale));
-  }
-}
-
 .control-panel {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 15px;
   background: linear-gradient(145deg, #1e1e1e, #333);
-  border: 2px solid #28a745;
+  border: 1px solid #28a745;
   border-radius: 15px;
   padding: 10px 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
   width: 90%;
   max-width: 350px;
-  margin: 10px auto 5px;
+  margin: 5px auto;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px; /* Space between buttons */
 }
 
 .arrow-btn,
@@ -320,22 +230,84 @@ header {
   height: 60px;
 }
 
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
-  }
-  50% {
-    box-shadow: 0 0 20px rgba(0, 255, 0, 1);
-  }
-  100% {
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
-  }
-}
-
 footer {
   background: linear-gradient(90deg, #28a745, #1e7e34);
   color: #fff;
 
   font-size: 0.8rem;
   margin-top: 15px;
+}
+
+/* Starfield Background */
+.starfield {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  overflow: hidden;
+  z-index: -1;
+}
+
+/* Static Stars */
+.starfield:before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: transparent;
+}
+
+/* Generate Stars */
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  animation: twinkle 5s infinite ease-in-out;
+}
+
+/* Twinkling Effect for Stars */
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Comets */
+.comet {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 1), transparent);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  animation: shoot 5s ease-in-out infinite;
+}
+
+/* Comet Animation */
+@keyframes shoot {
+  0% {
+    transform: translate(-100%, -100%) scale(0);
+    opacity: 0.7;
+  }
+  30% {
+    transform: translate(50vw, 50vh) scale(1.5);
+    opacity: 1;
+  }
+  70% {
+    transform: translate(100vw, 100vh) scale(1.5);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(200%, 200%) scale(0);
+    opacity: 0;
+  }
 }
