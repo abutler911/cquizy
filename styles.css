@@ -350,3 +350,67 @@ footer {
 .extra-buttons .btn {
   margin: 0 10px;
 }
+
+/* Memory Items Styles */
+.memory-container {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 20px;
+}
+
+.memory-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.memory-list .list-group-item {
+  background: linear-gradient(145deg, #1e1e1e, #333);
+  color: #d4d4d4;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  margin-bottom: 10px;
+  padding: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.memory-list .list-group-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 10px rgba(0, 255, 0, 0.4);
+  background: linear-gradient(145deg, #2a2a2a, #444);
+}
+
+.memory-list .list-group-item strong {
+  color: #28a745;
+  font-size: 1rem;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.memory-list .list-group-item ul {
+  margin-left: 20px;
+  padding-left: 0;
+  list-style: disc;
+}
+
+.memory-list .list-group-item ul li {
+  margin: 5px 0;
+  color: #d4d4d4;
+  font-size: 0.8rem;
+}
+
+.memory-list .list-group-item ul small {
+  color: #999;
+  font-style: italic;
+}
+
+.memory-list .list-group-item ul h6 {
+  font-size: 1rem;
+  color: #28a745;
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+
+.memory-list .list-group-item:last-child {
+  margin-bottom: 0;
+}
