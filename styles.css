@@ -281,33 +281,43 @@ footer {
   }
 }
 
-/* Comets */
 .comet {
   position: absolute;
-  width: 4px;
-  height: 4px;
+  width: 6px; /* Base size of the comet */
+  height: 6px;
   background: radial-gradient(circle, rgba(255, 255, 255, 1), transparent);
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
   border-radius: 50%;
-  animation: shoot 5s ease-in-out infinite;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+  animation: moveComet 5s linear forwards;
 }
 
-/* Comet Animation */
+.comet::before {
+  content: "";
+  position: absolute;
+  width: 150px; /* Length of the tail */
+  height: 6px; /* Thickness of the tail */
+  background: linear-gradient(to left, rgba(255, 255, 255, 0.8), transparent);
+  border-radius: 50%;
+  top: 50%;
+  left: -140px; /* Offset to extend the tail behind the comet */
+  transform: translateY(-50%);
+}
+
 @keyframes shoot {
   0% {
-    transform: translate(-100%, -100%) scale(0);
+    transform: translate(-50%, -50%) scale(0);
     opacity: 0.7;
   }
   30% {
-    transform: translate(50vw, 50vh) scale(1.5);
+    transform: translate(50vw, 50vh) scale(1);
     opacity: 1;
   }
   70% {
-    transform: translate(100vw, 100vh) scale(1.5);
+    transform: translate(100vw, 100vh) scale(1);
     opacity: 0.5;
   }
   100% {
-    transform: translate(200%, 200%) scale(0);
+    transform: translate(150vw, 150vh) scale(0);
     opacity: 0;
   }
 }
