@@ -1,0 +1,75 @@
+.arrow-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 15px;
+}
+
+.control-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  background: linear-gradient(145deg, #1e1e1e, #333);
+  border: 1px solid var(--primary-green);
+  border-radius: 15px;
+  padding: 10px 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  width: 90%;
+  max-width: 350px;
+  margin: 5px auto;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.arrow-btn,
+.randomize-btn {
+  background-color: var(--primary-green);
+  color: var(--white);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s, background 0.3s ease-in-out;
+}
+
+.arrow-btn {
+  width: 50px;
+  height: 50px;
+  font-size: 1.5rem;
+}
+
+.randomize-btn {
+  width: 60px;
+  height: 60px;
+  font-size: 1.5rem;
+}
+
+.arrow-btn:hover,
+.randomize-btn:hover {
+  background-color: var(--dark-green);
+  transform: scale(1.1);
+}
+
+.arrow-btn:focus,
+.randomize-btn:focus {
+  outline: none;
+}
+
+.arrow-btn i,
+.randomize-btn i {
+  font-size: 1.2rem;
+}
+
+#randomize-btn i {
+  font-size: 1.3rem;
+}
