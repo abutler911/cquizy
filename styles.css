@@ -444,7 +444,7 @@ footer {
 }
 
 .table th {
-  background: linear-gradient(145deg, #1e7e34, #28a745);
+  background-color: var(--primary-green);
   color: #ffffff;
   font-weight: bold;
   text-transform: uppercase;
