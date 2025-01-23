@@ -6,7 +6,7 @@
   --background-dark: #000;
   --white: #fff;
   --table-hover-green: rgba(40, 167, 69, 0.8);
-  --border-light: rgba(255, 255, 255, 0.2);
+  --border-light: rgba(255, 255, 255, 0.7);
   --row-alt: rgba(255, 255, 255, 0.05);
 }
 
@@ -101,9 +101,9 @@ header {
 
 .context {
   font-size: 0.5rem;
+  color: var(--dark-gray);
   font-weight: 300;
   text-transform: uppercase;
-  color: var(--border-light);
   position: absolute;
   top: calc(15px + 0.8rem);
   left: 15px;
@@ -425,7 +425,6 @@ footer {
   margin-bottom: 0;
 }
 
-/* Structural Limitations Table Styling */
 .table {
   font-size: 0.7rem;
   color: #d4d4d4;
@@ -450,34 +449,12 @@ footer {
   text-transform: uppercase;
 }
 
-/* .table td {
-  background: rgba(
-    255,
-    255,
-    255,
-    0.6
-  ); 
-} */
-
 .table tr:nth-child(even) td {
-  background: rgba(255, 255, 255, 0.05); /* Alternating row color for clarity */
+  background: rgba(255, 255, 255, 0.05);
 }
 
-/* .table-bordered {
-  border: 1px solid rgba(255, 255, 255, 0.2); 
-} */
-/* 
-.table-bordered th,
-.table-bordered td {
-  border: 1px solid rgba(255, 255, 255, 0.2); 
-} */
-
 .table-hover tbody tr:hover {
-  background: rgba(40, 167, 69, 0.8); /* Green highlight on hover */
+  background: rgba(40, 167, 69, 0.8);
   color: #ffffff;
   transition: background 0.3s ease, color 0.3s ease;
 }
-
-/* .table tbody tr {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-} */
