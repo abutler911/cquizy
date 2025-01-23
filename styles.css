@@ -1,11 +1,23 @@
+:root {
+  --primary-green: #28a745;
+  --dark-green: #1e7e34;
+  --light-gray: #d4d4d4;
+  --dark-gray: #333;
+  --background-dark: #000;
+  --white: #fff;
+  --table-hover-green: rgba(40, 167, 69, 0.8);
+  --border-light: rgba(255, 255, 255, 0.2);
+  --row-alt: rgba(255, 255, 255, 0.05);
+}
+
 body {
-  background-color: #000;
+  background-color: var(--background-dark);
   margin: 0;
   font-family: "Red Hat Text", sans-serif;
 }
 
 header {
-  background: linear-gradient(90deg, #28a745, #1e7e34);
+  background-color: var(--primary-green);
   margin-bottom: 10px;
   padding: 10px;
   text-align: center;
@@ -13,7 +25,7 @@ header {
 }
 
 .title {
-  color: #ffffff;
+  color: var(--white);
   font-family: "Mystery Quest", cursive;
   font-size: 3rem;
   letter-spacing: 0.5rem;
@@ -59,7 +71,7 @@ header {
 
 .card-front {
   background: linear-gradient(145deg, #ffffff, #e6e6e6);
-  border: 1px solid #28a745;
+  border: 1px solid var(--primary-green);
   color: #000;
   transition: background 0.5s ease;
 }
@@ -69,17 +81,17 @@ header {
 }
 
 .card-back {
-  background: linear-gradient(145deg, #28a745, #1e7e34);
-  color: #ffffff;
+  background-color: var(--primary-green);
+  color: var(--white);
   transform: rotateY(180deg);
-  border: 1px solid #fff;
+  border: 1px solid var(--white);
 }
 
 .category {
   font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
-  color: #28a745;
+  color: var(--primary-green);
   background-color: transparent;
   padding: 2px 5px;
   position: absolute;
@@ -91,7 +103,7 @@ header {
   font-size: 0.5rem;
   font-weight: 300;
   text-transform: uppercase;
-  color: rgb(102, 102, 102);
+  color: var(--border-light);
   position: absolute;
   top: calc(15px + 0.8rem);
   left: 15px;
@@ -120,8 +132,8 @@ header {
 }
 
 .arrow-btn {
-  background: linear-gradient(145deg, #28a745, #1e7e34);
-  color: #ffffff;
+  background-color: var(--primary-green);
+  color: var(--white);
   border: none;
   border-radius: 50%;
   width: 50px;
@@ -136,7 +148,7 @@ header {
 }
 
 .arrow-btn:hover {
-  background: linear-gradient(145deg, #1e7e34, #28a745);
+  background-color: var(--primary-green);
   transform: scale(1.1);
 }
 
@@ -152,7 +164,7 @@ header {
 }
 
 #randomize-btn {
-  background: linear-gradient(145deg, #28a745, #1e7e34);
+  background-color: var(--primary-green);
   color: #ffffff;
   font-size: 1.5rem;
   border: none;
@@ -166,12 +178,12 @@ header {
 }
 
 #randomize-btn:hover {
-  background: linear-gradient(145deg, #1e7e34, #28a745);
-  transform: scale(1.1); /* Slight scaling effect on hover */
+  background-color: var(--dark-green);
+  transform: scale(1.1);
 }
 
 #randomize-btn i {
-  font-size: 1.5rem; /* Icon size */
+  font-size: 1.3rem;
 }
 
 .control-panel {
@@ -181,7 +193,7 @@ header {
   align-items: center;
   gap: 15px;
   background: linear-gradient(145deg, #1e1e1e, #333);
-  border: 1px solid #28a745;
+  border: 1px solid var(--primary-green);
   border-radius: 15px;
   padding: 10px 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
@@ -194,12 +206,12 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 15px; /* Space between buttons */
+  gap: 12px;
 }
 
 .arrow-btn,
 .randomize-btn {
-  background: linear-gradient(145deg, #28a745, #1e7e34);
+  background-color: var(--primary-green);
   color: #ffffff;
   border: none;
   border-radius: 50%;
@@ -216,7 +228,7 @@ header {
 
 .arrow-btn:hover,
 .randomize-btn:hover {
-  background: linear-gradient(145deg, #1e7e34, #28a745);
+  background-color: var(--dark-green);
   transform: scale(1.1);
 }
 
@@ -231,7 +243,7 @@ header {
 }
 
 footer {
-  background: linear-gradient(90deg, #28a745, #1e7e34);
+  background-color: var(--primary-green);
   color: #fff;
 
   font-size: 0.8rem;
@@ -283,7 +295,7 @@ footer {
 
 .comet {
   position: absolute;
-  width: 6px; /* Base size of the comet */
+  width: 6px;
   height: 6px;
   background: radial-gradient(circle, rgba(255, 255, 255, 1), transparent);
   border-radius: 50%;
@@ -294,12 +306,12 @@ footer {
 .comet::before {
   content: "";
   position: absolute;
-  width: 150px; /* Length of the tail */
-  height: 6px; /* Thickness of the tail */
+  width: 150px;
+  height: 6px;
   background: linear-gradient(to left, rgba(255, 255, 255, 0.8), transparent);
   border-radius: 50%;
   top: 50%;
-  left: -140px; /* Offset to extend the tail behind the comet */
+  left: -140px;
   transform: translateY(-50%);
 }
 
@@ -322,9 +334,8 @@ footer {
   }
 }
 
-/* General styles for the green buttons */
 .green-btn {
-  background: linear-gradient(145deg, #28a745, #1e7e34);
+  background-color: var(--primary-green);
   color: #ffffff;
   font-size: 1rem;
   font-weight: 600;
@@ -339,7 +350,7 @@ footer {
 }
 
 .green-btn:hover {
-  background: linear-gradient(145deg, #1e7e34, #28a745);
+  background-color: var(--dark-green);
   transform: scale(1.05);
 }
 
@@ -351,7 +362,6 @@ footer {
   margin: 0 10px;
 }
 
-/* Memory Items Styles */
 .memory-container {
   background: rgba(0, 0, 0, 0.8);
   padding: 20px;
@@ -414,3 +424,60 @@ footer {
 .memory-list .list-group-item:last-child {
   margin-bottom: 0;
 }
+
+/* Structural Limitations Table Styling */
+.table {
+  font-size: 0.7rem;
+  color: #d4d4d4;
+  border-collapse: collapse;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 1);
+  margin: 20px auto;
+  overflow: hidden;
+}
+
+.table th,
+.table td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 12px 15px;
+}
+
+.table th {
+  background: linear-gradient(145deg, #1e7e34, #28a745);
+  color: #ffffff;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* .table td {
+  background: rgba(
+    255,
+    255,
+    255,
+    0.6
+  ); 
+} */
+
+.table tr:nth-child(even) td {
+  background: rgba(255, 255, 255, 0.05); /* Alternating row color for clarity */
+}
+
+/* .table-bordered {
+  border: 1px solid rgba(255, 255, 255, 0.2); 
+} */
+/* 
+.table-bordered th,
+.table-bordered td {
+  border: 1px solid rgba(255, 255, 255, 0.2); 
+} */
+
+.table-hover tbody tr:hover {
+  background: rgba(40, 167, 69, 0.8); /* Green highlight on hover */
+  color: #ffffff;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* .table tbody tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+} */
