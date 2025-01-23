@@ -14,6 +14,9 @@ body {
   background-color: var(--background-dark);
   margin: 0;
   font-family: "Red Hat Text", sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 header {
@@ -38,9 +41,10 @@ header {
   text-align: center;
 }
 
-footer {
-  background-color: var(--primary-green);
-  color: var(--white);
-  font-size: 0.8rem;
-  margin-top: 15px;
+#footer {
+  color: var(--border-light);
+  font-size: 0.6rem;
+  margin-top: auto;
+  margin-bottom: 5px;
+  text-align: center;
 }
