@@ -73,3 +73,31 @@
 #randomize-btn i {
   font-size: 1.3rem;
 }
+
+.green-btn {
+  background-color: var(--primary-green);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 8px;
+  width: 150px;
+  padding: 10px 0;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s, background 0.3s ease-in-out;
+}
+
+.green-btn:hover {
+  background-color: var(--dark-green);
+  transform: scale(1.05);
+}
+
+.extra-buttons {
+  margin-bottom: 15px;
+}
+
+.extra-buttons .btn {
+  margin: 0 10px;
+}
