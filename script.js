@@ -12,6 +12,16 @@ const answerElement = cardBack.querySelector(".answer");
 
 let currentQuestionIndex = 0;
 
+const messages = ["TFAYD", "2025 CQ! Let's go!"];
+
+gsap.to(".title", {
+  y: -6,
+  repeat: -1,
+  yoyo: true,
+  duration: 0.5,
+  ease: "sine.inOut",
+});
+
 function loadQuestion(index) {
   if (index >= 0 && index < questions.length) {
     const { category, context, question, answer } = questions[index];
@@ -39,25 +49,28 @@ function loadQuestion(index) {
 cardInner.addEventListener("click", () => {
   if (!cardInner.classList.contains("is-flipped")) {
     gsap.to(cardInner, {
-      duration: 0.2,
+      duration: 0.6,
       rotationY: 180,
-      ease: "power2.inOut",
+      scale: 1.1, // Slightly enlarge
+      ease: "back.out(1.7)",
       onComplete: () => {
         cardInner.classList.add("is-flipped");
+        gsap.to(cardInner, { scale: 1, duration: 0.3 }); // Reset scale
       },
     });
   } else {
     gsap.to(cardInner, {
-      duration: 0.2,
+      duration: 0.6,
       rotationY: 0,
-      ease: "power2.inOut",
+      scale: 1.1,
+      ease: "back.out(1.7)",
       onComplete: () => {
         cardInner.classList.remove("is-flipped");
+        gsap.to(cardInner, { scale: 1, duration: 0.3 });
       },
     });
   }
 });
-
 // Left arrow functionality
 leftArrow.addEventListener("click", () => {
   if (currentQuestionIndex > 0) {
@@ -119,5 +132,38 @@ buttons.forEach((button) => {
     });
   });
 });
+
+setInterval(() => {
+  const message = document.createElement("div");
+  message.className = "popup-message";
+  message.textContent = messages[Math.floor(Math.random() * messages.length)];
+  const randomTop = Math.random() * 60 + 20; // Between 20% and 80%
+  message.style.top = `${randomTop}%`;
+
+  document.body.appendChild(message);
+
+  gsap.fromTo(
+    message,
+    { opacity: 0, y: -30 },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      ease: "power2.out",
+      onComplete: () => {
+        gsap.to(message, {
+          opacity: 0,
+          y: 30,
+          duration: 1,
+          delay: 2,
+          ease: "power2.in",
+          onComplete: () => {
+            message.remove();
+          },
+        });
+      },
+    }
+  );
+}, 103500);
 // Load the first question
 loadQuestion(currentQuestionIndex);

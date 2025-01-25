@@ -67,15 +67,16 @@ document.addEventListener("DOMContentLoaded", () => {
     // Animate the shooting star
     gsap.fromTo(
       shootingStar,
-      { opacity: 1 },
+      { opacity: 1, scale: 1 },
       {
         opacity: 0,
+        scale: 0.5,
         x: endX - startX,
         y: endY - startY,
         duration: duration,
         ease: "power1.out",
         onComplete: () => {
-          shootingStar.remove(); // Remove the element after the animation
+          shootingStar.remove();
         },
       }
     );
