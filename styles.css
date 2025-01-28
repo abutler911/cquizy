@@ -36,7 +36,7 @@ header {
 
 .popup-message {
   position: fixed;
-  top: 75%;
+  top: 70%;
   left: 50%;
   transform: translateX(-50%);
   padding: 5px 25px;
@@ -85,27 +85,4 @@ header {
   margin-top: auto;
   margin-bottom: 5px;
   text-align: center;
-}
-
-.shimmer {
-  font-size: 2.5rem;
-  font-weight: 900;
-  position: relative;
-  display: inline-block;
-  color: transparent;
-  background: linear-gradient(to right, #000 10%, #ffffff 50%, #000 90%);
-  background-size: 300% 100%;
-  background-clip: text;
-  -webkit-background-clip: text;
-  text-fill-color: transparent;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-}
-
-@keyframes shimmer-effect {
-  0% {
-    background-position: -150% 0;
-  }
-  100% {
-    background-position: 150% 0;
-  }
 }

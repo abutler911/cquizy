@@ -155,16 +155,3 @@ setInterval(() => {
 }, 10000);
 
 loadQuestion(currentQuestionIndex);
-
-const shimmerElement = document.querySelector(".shimmer");
-
-function triggerShimmer() {
-  shimmerElement.style.animation = "shimmer-effect 2.5s linear";
-  setTimeout(() => {
-    shimmerElement.style.animation = "none";
-  }, 2500);
-  const nextShimmerTime = Math.random() * (45 - 25) + 25;
-  setTimeout(triggerShimmer, nextShimmerTime * 1000);
-}
-
-setTimeout(triggerShimmer, Math.random() * 5000);
