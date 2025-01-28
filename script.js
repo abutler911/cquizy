@@ -1,4 +1,3 @@
-// Variables for card elements
 const cardFront = document.querySelector(".card-front");
 const cardBack = document.querySelector(".card-back");
 const cardInner = document.querySelector(".card-inner");
@@ -36,11 +35,8 @@ function loadQuestion(index) {
     questionContextElement.textContent = `Context: ${context}` || context;
     questionElement.textContent = question;
     answerElement.textContent = answer;
-
-    // Reset the flip state
     cardInner.classList.remove("is-flipped");
 
-    // Animate card entry
     gsap.fromTo(
       cardInner,
       { opacity: 0, y: 50 },
@@ -58,11 +54,11 @@ cardInner.addEventListener("click", () => {
     gsap.to(cardInner, {
       duration: 0.1,
       rotationY: 180,
-      scale: 1.1, // Slightly enlarge
+      scale: 1.1,
       ease: "back.out(1)",
       onComplete: () => {
         cardInner.classList.add("is-flipped");
-        gsap.to(cardInner, { scale: 1, duration: 0.2 }); // Reset scale
+        gsap.to(cardInner, { scale: 1, duration: 0.2 });
       },
     });
   } else {
@@ -78,7 +74,7 @@ cardInner.addEventListener("click", () => {
     });
   }
 });
-// Left arrow functionality
+
 leftArrow.addEventListener("click", () => {
   if (currentQuestionIndex > 0) {
     currentQuestionIndex--;
@@ -86,7 +82,6 @@ leftArrow.addEventListener("click", () => {
   }
 });
 
-// Right arrow functionality
 rightArrow.addEventListener("click", () => {
   if (currentQuestionIndex < questions.length - 1) {
     currentQuestionIndex++;
@@ -94,36 +89,21 @@ rightArrow.addEventListener("click", () => {
   }
 });
 
-// Function to shuffle questions
 function shuffleQuestions() {
-  // Add the fade-out class to start the animation
   cardInner.classList.add("fade-out");
-
-  // Wait for the fade-out animation to complete
   setTimeout(() => {
-    // Shuffle the questions
     for (let i = questions.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [questions[i], questions[j]] = [questions[j], questions[i]];
     }
-    console.log("Questions shuffled:", questions); // Debugging
-
-    // Load the first question from the shuffled list
     currentQuestionIndex = 0;
     loadQuestion(currentQuestionIndex);
-
-    // Add the fade-in class
     cardInner.classList.remove("fade-out");
     cardInner.classList.add("fade-in");
-
-    // Remove the fade-in class after the animation
-    setTimeout(() => {
-      cardInner.classList.remove("fade-in");
-    }, 500); // Match the fade-in duration
-  }, 500); // Match the fade-out duration
+    setTimeout(() => cardInner.classList.remove("fade-in"), 500);
+  }, 500);
 }
 
-// Event listener for the randomize button
 document
   .getElementById("randomize-btn")
   .addEventListener("click", shuffleQuestions);
@@ -140,15 +120,10 @@ buttons.forEach((button) => {
   });
 });
 
-// Randomly show popup messages at the fixed position
 function showPopupMessage() {
   const popupMessage = document.querySelector(".popup-message");
   const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-
-  // Set the message content
   popupMessage.textContent = randomMessage;
-
-  // Show the popup with animation
   gsap.fromTo(
     popupMessage,
     { display: "none", opacity: 0, scale: 0.8 },
@@ -159,7 +134,6 @@ function showPopupMessage() {
       duration: 0.5,
       ease: "power2.out",
       onComplete: () => {
-        // Hide the popup after 2 seconds
         gsap.to(popupMessage, {
           opacity: 0,
           scale: 0.8,
@@ -167,8 +141,8 @@ function showPopupMessage() {
           delay: 2,
           ease: "power2.in",
           onComplete: () => {
-            popupMessage.style.display = "none"; // Hide it completely
-            popupMessage.textContent = ""; // Clear the text
+            popupMessage.style.display = "none";
+            popupMessage.textContent = "";
           },
         });
       },
@@ -176,12 +150,21 @@ function showPopupMessage() {
   );
 }
 
-// Trigger the popup randomly every few seconds
 setInterval(() => {
-  if (Math.random() > 0.2) {
-    showPopupMessage();
-  }
+  if (Math.random() > 0.2) showPopupMessage();
 }, 10000);
 
-// Load the first question
 loadQuestion(currentQuestionIndex);
+
+const shimmerElement = document.querySelector(".shimmer");
+
+function triggerShimmer() {
+  shimmerElement.style.animation = "shimmer-effect 2.5s linear";
+  setTimeout(() => {
+    shimmerElement.style.animation = "none";
+  }, 2500);
+  const nextShimmerTime = Math.random() * (45 - 25) + 25;
+  setTimeout(triggerShimmer, nextShimmerTime * 1000);
+}
+
+setTimeout(triggerShimmer, Math.random() * 5000);

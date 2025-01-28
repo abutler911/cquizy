@@ -36,7 +36,7 @@ header {
 
 .popup-message {
   position: fixed;
-  top: 62%;
+  top: 75%;
   left: 50%;
   transform: translateX(-50%);
   padding: 5px 25px;
@@ -93,17 +93,11 @@ header {
   position: relative;
   display: inline-block;
   color: transparent;
-  background: linear-gradient(
-    to right,
-    #000 10%,
-    #ffffff 50%,
-    #000 90%
-  ); /* Smooth gradient */
+  background: linear-gradient(to right, #000 10%, #ffffff 50%, #000 90%);
   background-size: 300% 100%;
   background-clip: text;
   -webkit-background-clip: text;
   text-fill-color: transparent;
-  animation: shimmer-effect 25s linear infinite;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
