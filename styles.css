@@ -63,3 +63,26 @@ header {
   margin-bottom: 5px;
   text-align: center;
 }
+
+.shimmer {
+  font-size: 2rem; /* Adjust size as needed */
+  font-weight: bold;
+  color: black; /* Base text color */
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(to right, black 0%, blue 100%, black 100%);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: shimmer-effect 45s linear infinite;
+}
+
+@keyframes shimmer-effect {
+  from {
+    background-position: 400% center;
+  }
+  to {
+    background-position: -400% center;
+  }
+}
