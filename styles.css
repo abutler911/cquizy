@@ -70,7 +70,12 @@ header {
   color: black; /* Base text color */
   position: relative;
   display: inline-block;
-  background: linear-gradient(to right, black 0%, blue 100%, black 100%);
+  background: linear-gradient(
+    to right,
+    black 0%,
+    rgb(255, 255, 255) 100%,
+    black 100%
+  );
   background-size: 200% auto;
   background-clip: text;
   -webkit-background-clip: text;

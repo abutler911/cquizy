@@ -49,24 +49,24 @@ function loadQuestion(index) {
 cardInner.addEventListener("click", () => {
   if (!cardInner.classList.contains("is-flipped")) {
     gsap.to(cardInner, {
-      duration: 0.6,
+      duration: 0.1,
       rotationY: 180,
       scale: 1.1, // Slightly enlarge
-      ease: "back.out(1.7)",
+      ease: "back.out(1)",
       onComplete: () => {
         cardInner.classList.add("is-flipped");
-        gsap.to(cardInner, { scale: 1, duration: 0.3 }); // Reset scale
+        gsap.to(cardInner, { scale: 1, duration: 0.2 }); // Reset scale
       },
     });
   } else {
     gsap.to(cardInner, {
-      duration: 0.6,
+      duration: 0.1,
       rotationY: 0,
       scale: 1.1,
       ease: "back.out(1.7)",
       onComplete: () => {
         cardInner.classList.remove("is-flipped");
-        gsap.to(cardInner, { scale: 1, duration: 0.3 });
+        gsap.to(cardInner, { scale: 1, duration: 0.2 });
       },
     });
   }
