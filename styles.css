@@ -88,29 +88,30 @@ header {
 }
 
 .shimmer {
-  font-size: 2rem; /* Adjust size as needed */
-  font-weight: bold;
-  color: black; /* Base text color */
+  font-size: 2.5rem;
+  font-weight: 900;
   position: relative;
   display: inline-block;
+  color: transparent;
   background: linear-gradient(
     to right,
-    black 0%,
-    rgb(255, 255, 255) 100%,
-    black 100%
-  );
-  background-size: 200% auto;
+    #000 10%,
+    #ffffff 50%,
+    #000 90%
+  ); /* Smooth gradient */
+  background-size: 300% 100%;
   background-clip: text;
   -webkit-background-clip: text;
-  color: transparent;
-  animation: shimmer-effect 45s linear infinite;
+  text-fill-color: transparent;
+  animation: shimmer-effect 25s linear infinite;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 @keyframes shimmer-effect {
-  from {
-    background-position: 400% center;
+  0% {
+    background-position: -150% 0;
   }
-  to {
-    background-position: -400% center;
+  100% {
+    background-position: 150% 0;
   }
 }
