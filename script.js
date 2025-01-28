@@ -12,7 +12,14 @@ const answerElement = cardBack.querySelector(".answer");
 
 let currentQuestionIndex = 0;
 
-const messages = ["TFAYD", "2025 CQ! Let's go!"];
+const messages = [
+  "TFAYD",
+  "2025 CQ! Let's go!",
+  "You're Amazing!",
+  "Keep it up!",
+  "You're doing great!",
+  "Keep at it!",
+];
 
 gsap.to(".title", {
   y: -6,
@@ -133,37 +140,48 @@ buttons.forEach((button) => {
   });
 });
 
-setInterval(() => {
-  const message = document.createElement("div");
-  message.className = "popup-message";
-  message.textContent = messages[Math.floor(Math.random() * messages.length)];
-  const randomTop = Math.random() * 60 + 20; // Between 20% and 80%
-  message.style.top = `${randomTop}%`;
+// Randomly show popup messages at the fixed position
+function showPopupMessage() {
+  const popupMessage = document.querySelector(".popup-message");
+  const randomMessage = messages[Math.floor(Math.random() * messages.length)];
 
-  document.body.appendChild(message);
+  // Set the message content
+  popupMessage.textContent = randomMessage;
 
+  // Show the popup with animation
   gsap.fromTo(
-    message,
-    { opacity: 0, y: -30 },
+    popupMessage,
+    { display: "none", opacity: 0, scale: 0.8 },
     {
+      display: "block",
       opacity: 1,
-      y: 0,
-      duration: 1,
+      scale: 1,
+      duration: 0.5,
       ease: "power2.out",
       onComplete: () => {
-        gsap.to(message, {
+        // Hide the popup after 2 seconds
+        gsap.to(popupMessage, {
           opacity: 0,
-          y: 30,
-          duration: 1,
+          scale: 0.8,
+          duration: 0.5,
           delay: 2,
           ease: "power2.in",
           onComplete: () => {
-            message.remove();
+            popupMessage.style.display = "none"; // Hide it completely
+            popupMessage.textContent = ""; // Clear the text
           },
         });
       },
     }
   );
-}, 103500);
+}
+
+// Trigger the popup randomly every few seconds
+setInterval(() => {
+  if (Math.random() > 0.2) {
+    showPopupMessage();
+  }
+}, 10000);
+
 // Load the first question
 loadQuestion(currentQuestionIndex);
