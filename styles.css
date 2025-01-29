@@ -45,10 +45,10 @@ h2 {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 #instructions {
-  font-size: 0.6rem;
+  font-size: 0.8rem;
   color: var(--border-light);
-  margin-bottom: 5px;
   text-align: center;
+  margin-top: 10px;
 }
 
 #footer {
