@@ -9,7 +9,7 @@
   padding: 10px 15px;
 
   width: 100%;
-  max-width: 320px;
+  max-width: 400px;
   margin: 5px auto;
 }
 
@@ -17,7 +17,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 12px;
+  gap: 50px;
 }
 
 .arrow-btn,
@@ -69,7 +69,7 @@
   font-weight: 600;
   text-transform: uppercase;
   border-radius: 8px;
-  width: 155px;
+  width: 195px;
   padding: 2px;
 }
 
