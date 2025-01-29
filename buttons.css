@@ -7,10 +7,10 @@
   border: 1px solid var(--primary-green);
   border-radius: 15px;
   padding: 10px 15px;
-
   width: 100%;
-  max-width: 400px;
+  max-width: 270px;
   margin: 5px auto;
+  height: 90px;
 }
 
 .button-group {
@@ -40,9 +40,9 @@
 }
 
 .arrow-btn {
-  width: 70px;
-  height: 70px;
-  font-size: 1.5rem;
+  width: 60px;
+  height: 60px;
+  font-size: 1.4rem;
 }
 
 .randomize-btn {
