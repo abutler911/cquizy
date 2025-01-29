@@ -32,7 +32,7 @@ function loadQuestion(index) {
     gsap.fromTo(
       cardInner,
       { opacity: 0, y: 50 },
-      { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }
+      { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }
     );
   } else {
     categoryElement.textContent = "";
@@ -44,24 +44,24 @@ function loadQuestion(index) {
 cardInner.addEventListener("click", () => {
   if (!cardInner.classList.contains("is-flipped")) {
     gsap.to(cardInner, {
-      duration: 0.1,
+      duration: 0.05,
       rotationY: 180,
-      scale: 1.1,
+      scale: 1.05,
       ease: "back.out(1)",
       onComplete: () => {
         cardInner.classList.add("is-flipped");
-        gsap.to(cardInner, { scale: 1, duration: 0.2 });
+        gsap.to(cardInner, { scale: 1, duration: 0.1 });
       },
     });
   } else {
     gsap.to(cardInner, {
-      duration: 0.1,
+      duration: 0.05,
       rotationY: 0,
-      scale: 1.1,
+      scale: 1.05,
       ease: "back.out(1.7)",
       onComplete: () => {
         cardInner.classList.remove("is-flipped");
-        gsap.to(cardInner, { scale: 1, duration: 0.2 });
+        gsap.to(cardInner, { scale: 1, duration: 0.1 });
       },
     });
   }
