@@ -8,8 +8,12 @@ const categoryElement = cardFront.querySelector(".category");
 const questionContextElement = cardFront.querySelector(".context");
 const questionElement = cardFront.querySelector(".question");
 const answerElement = cardBack.querySelector(".answer");
+const questionNumberElement = document.createElement("div");
+questionNumberElement.classList.add("question-number");
+cardFront.appendChild(questionNumberElement);
 
 let currentQuestionIndex = 0;
+let questions = [];
 
 const messages = [
   "TFAYD",
@@ -20,6 +24,32 @@ const messages = [
   "Keep at it!",
 ];
 
+async function fetchQuestions() {
+  try {
+    const response = await fetch(
+      "https://cquizy-api.onrender.com/api/questions",
+      {
+        method: "GET",
+        credentials: "include", // Allows cookies if necessary
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch questions: ${response.statusText}`);
+    }
+
+    questions = await response.json();
+    if (questions.length > 0) {
+      loadQuestion(0);
+    }
+  } catch (error) {
+    console.error("Error fetching questions:", error);
+  }
+}
+
 function loadQuestion(index) {
   if (index >= 0 && index < questions.length) {
     const { category, context, question, answer } = questions[index];
@@ -27,6 +57,7 @@ function loadQuestion(index) {
     questionContextElement.textContent = `Context: ${context}` || context;
     questionElement.textContent = question;
     answerElement.textContent = answer;
+    questionNumberElement.textContent = `${index + 1} of ${questions.length}`;
     cardInner.classList.remove("is-flipped");
 
     gsap.fromTo(
@@ -38,6 +69,7 @@ function loadQuestion(index) {
     categoryElement.textContent = "";
     questionElement.textContent = "No more questions!";
     answerElement.textContent = "End of cards";
+    questionNumberElement.textContent = "";
   }
 }
 
@@ -112,4 +144,4 @@ buttons.forEach((button) => {
   });
 });
 
-loadQuestion(currentQuestionIndex);
+fetchQuestions();
