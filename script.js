@@ -30,7 +30,7 @@ async function fetchQuestions() {
       "https://cquizy-api.onrender.com/api/questions",
       {
         method: "GET",
-        credentials: "include", // Allows cookies if necessary
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
