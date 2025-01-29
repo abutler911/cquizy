@@ -1,16 +1,8 @@
-.arrow-container {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin-bottom: 15px;
-}
-
 .control-panel {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* gap: 15px; */
   background: linear-gradient(145deg, #1e1e1e, #333);
   border: 1px solid var(--primary-green);
   border-radius: 15px;
@@ -29,17 +21,22 @@
 }
 
 .arrow-btn,
-.randomize-btn {
+.randomize-btn,
+.green-btn {
   background-color: var(--primary-green);
-  color: var(--white);
   border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s, background 0.3s ease-in-out;
+}
+
+.arrow-btn,
+.randomize-btn {
+  color: var(--white);
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  transition: transform 0.2s, background 0.3s ease-in-out;
 }
 
 .arrow-btn {
@@ -49,55 +46,34 @@
 }
 
 .randomize-btn {
-  width: 60px;
-  height: 60px;
-  font-size: 1.5rem;
+  width: 35px;
+  height: 35px;
+  padding: 5px;
 }
 
 .arrow-btn:hover,
-.randomize-btn:hover {
+.randomize-btn:hover,
+.green-btn:hover {
   background-color: var(--dark-green);
   transform: scale(1.1);
 }
 
-.arrow-btn:focus,
-.randomize-btn:focus {
-  outline: none;
-}
-
 .arrow-btn i,
 .randomize-btn i {
-  font-size: 1.2rem;
-}
-
-#randomize-btn i {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
 }
 
 .green-btn {
-  background-color: var(--primary-green);
-  color: #ffffff;
+  color: var(--black);
   font-size: 1rem;
   font-weight: 600;
   text-transform: uppercase;
-  border: none;
   border-radius: 8px;
-  width: 150px;
-  padding: 10px 0;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s, background 0.3s ease-in-out;
+  width: 155px;
+  padding: 2px;
 }
 
 .green-btn:hover {
-  background-color: var(--dark-green);
+  color: var(--white);
   transform: scale(1.05);
-}
-
-.extra-buttons {
-  margin-bottom: 15px;
-}
-
-.extra-buttons .btn {
-  margin: 0 10px;
 }
