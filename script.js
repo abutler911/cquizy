@@ -31,9 +31,7 @@ async function fetchQuestions() {
       {
         method: "GET",
         credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
       }
     );
 
@@ -73,10 +71,27 @@ function loadQuestion(index) {
   }
 }
 
+function flipCardBack(callback) {
+  if (cardInner.classList.contains("is-flipped")) {
+    gsap.to(cardInner, {
+      duration: 0.2,
+      rotationY: 0,
+      scale: 1,
+      ease: "power2.out",
+      onComplete: () => {
+        cardInner.classList.remove("is-flipped");
+        if (callback) callback();
+      },
+    });
+  } else if (callback) {
+    callback();
+  }
+}
+
 cardInner.addEventListener("click", () => {
   if (!cardInner.classList.contains("is-flipped")) {
     gsap.to(cardInner, {
-      duration: 0.05,
+      duration: 0.1,
       rotationY: 180,
       scale: 1.05,
       ease: "back.out(1)",
@@ -86,46 +101,45 @@ cardInner.addEventListener("click", () => {
       },
     });
   } else {
-    gsap.to(cardInner, {
-      duration: 0.05,
-      rotationY: 0,
-      scale: 1.05,
-      ease: "back.out(1.7)",
-      onComplete: () => {
-        cardInner.classList.remove("is-flipped");
-        gsap.to(cardInner, { scale: 1, duration: 0.1 });
-      },
-    });
+    flipCardBack();
   }
 });
 
 leftArrow.addEventListener("click", () => {
   if (currentQuestionIndex > 0) {
-    currentQuestionIndex--;
-    loadQuestion(currentQuestionIndex);
+    flipCardBack(() => {
+      currentQuestionIndex--;
+      loadQuestion(currentQuestionIndex);
+    });
   }
 });
 
 rightArrow.addEventListener("click", () => {
   if (currentQuestionIndex < questions.length - 1) {
-    currentQuestionIndex++;
-    loadQuestion(currentQuestionIndex);
+    flipCardBack(() => {
+      currentQuestionIndex++;
+      loadQuestion(currentQuestionIndex);
+    });
   }
 });
 
 function shuffleQuestions() {
-  cardInner.classList.add("fade-out");
-  setTimeout(() => {
-    for (let i = questions.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [questions[i], questions[j]] = [questions[j], questions[i]];
-    }
-    currentQuestionIndex = 0;
-    loadQuestion(currentQuestionIndex);
-    cardInner.classList.remove("fade-out");
-    cardInner.classList.add("fade-in");
-    setTimeout(() => cardInner.classList.remove("fade-in"), 500);
-  }, 500);
+  flipCardBack(() => {
+    cardInner.classList.add("fade-out");
+
+    setTimeout(() => {
+      for (let i = questions.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [questions[i], questions[j]] = [questions[j], questions[i]];
+      }
+      currentQuestionIndex = 0;
+      loadQuestion(currentQuestionIndex);
+
+      cardInner.classList.remove("fade-out");
+      cardInner.classList.add("fade-in");
+      setTimeout(() => cardInner.classList.remove("fade-in"), 500);
+    }, 500);
+  });
 }
 
 document
