@@ -32,6 +32,7 @@ header {
   font-family: "Mystery Quest", cursive;
   font-size: 3rem;
   letter-spacing: 0.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 h2 {
@@ -44,7 +45,7 @@ h2 {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 #instructions {
-  font-size: 0.9rem;
+  font-size: 0.6rem;
   color: var(--border-light);
   margin-bottom: 5px;
   text-align: center;

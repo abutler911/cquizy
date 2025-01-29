@@ -10,14 +10,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 15px;
+  /* gap: 15px; */
   background: linear-gradient(145deg, #1e1e1e, #333);
   border: 1px solid var(--primary-green);
   border-radius: 15px;
   padding: 10px 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-  width: 90%;
-  max-width: 300px;
+  width: 100%;
+  max-width: 320px;
   margin: 5px auto;
 }
 

@@ -20,14 +20,6 @@ const messages = [
   "Keep at it!",
 ];
 
-gsap.to(".title", {
-  y: -6,
-  repeat: -1,
-  yoyo: true,
-  duration: 0.5,
-  ease: "sine.inOut",
-});
-
 function loadQuestion(index) {
   if (index >= 0 && index < questions.length) {
     const { category, context, question, answer } = questions[index];
