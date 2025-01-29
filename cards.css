@@ -77,6 +77,14 @@
   color: var(--dark-gray);
 }
 
+hr.divider {
+  width: 90%;
+  height: 2px;
+  background: var(--primary-green);
+  border: none;
+  /* margin: 10px 0; */
+}
+
 .question,
 .answer {
   font-size: 1.2rem;
