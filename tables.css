@@ -62,7 +62,7 @@
 }
 
 .table {
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   color: #d4d4d4;
   border-collapse: collapse;
   width: 100%;
@@ -75,7 +75,7 @@
 .table td {
   text-align: center;
   vertical-align: middle;
-  padding: 12px 15px;
+  padding: 8px 11px;
 }
 
 .table th {

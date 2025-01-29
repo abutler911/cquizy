@@ -120,38 +120,4 @@ buttons.forEach((button) => {
   });
 });
 
-function showPopupMessage() {
-  const popupMessage = document.querySelector(".popup-message");
-  const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-  popupMessage.textContent = randomMessage;
-  gsap.fromTo(
-    popupMessage,
-    { display: "none", opacity: 0, scale: 0.8 },
-    {
-      display: "block",
-      opacity: 1,
-      scale: 1,
-      duration: 0.5,
-      ease: "power2.out",
-      onComplete: () => {
-        gsap.to(popupMessage, {
-          opacity: 0,
-          scale: 0.8,
-          duration: 0.5,
-          delay: 2,
-          ease: "power2.in",
-          onComplete: () => {
-            popupMessage.style.display = "none";
-            popupMessage.textContent = "";
-          },
-        });
-      },
-    }
-  );
-}
-
-setInterval(() => {
-  if (Math.random() > 0.2) showPopupMessage();
-}, 10000);
-
 loadQuestion(currentQuestionIndex);
