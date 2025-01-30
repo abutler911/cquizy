@@ -12,23 +12,18 @@ const questionNumberElement = document.createElement("div");
 questionNumberElement.classList.add("question-number");
 cardFront.appendChild(questionNumberElement);
 
-// Create loading & shuffling messages
-const loadingMessage = document.createElement("div");
-loadingMessage.classList.add("status-message");
-loadingMessage.textContent = "Loading questions...";
-cardFront.appendChild(loadingMessage);
+// Get status message elements
+const loadingMessage = document.getElementById("loading-message");
+const shufflingMessage = document.getElementById("shuffling-message");
 
-const shufflingMessage = document.createElement("div");
-shufflingMessage.classList.add("status-message");
-shufflingMessage.textContent = "Shuffling...";
+// Hide shuffling message initially
 shufflingMessage.style.display = "none";
-cardFront.appendChild(shufflingMessage);
 
 let currentQuestionIndex = 0;
 let questions = [];
 
 async function fetchQuestions() {
-  loadingMessage.style.display = "block";
+  loadingMessage.style.display = "block"; // Show loading
 
   try {
     const response = await fetch(
@@ -45,7 +40,7 @@ async function fetchQuestions() {
     }
 
     questions = await response.json();
-    loadingMessage.style.display = "none";
+    loadingMessage.style.display = "none"; // Hide loading
 
     if (questions.length > 0) {
       loadQuestion(0);
@@ -135,7 +130,7 @@ rightArrow.addEventListener("click", () => {
 
 function shuffleQuestions() {
   flipCardBack(() => {
-    shufflingMessage.style.display = "block";
+    shufflingMessage.style.display = "block"; // Show "Shuffling..."
 
     setTimeout(() => {
       for (let i = questions.length - 1; i > 0; i--) {
@@ -145,11 +140,8 @@ function shuffleQuestions() {
       currentQuestionIndex = 0;
       loadQuestion(currentQuestionIndex);
 
-      shufflingMessage.style.display = "none";
-
-      cardInner.classList.add("fade-in");
-      setTimeout(() => cardInner.classList.remove("fade-in"), 500);
-    }, 1000);
+      shufflingMessage.style.display = "none"; // Hide "Shuffling..."
+    }, 1500); // Shuffling effect for 1.5s
   });
 }
 
