@@ -64,7 +64,7 @@ h2 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 5px;
+  margin-top: 10px;
 }
 
 .status-message {
@@ -78,5 +78,36 @@ h2 {
   text-align: center;
   width: fit-content;
   min-width: 120px;
+  display: none;
+}
+
+#loading-bar-container {
+  width: 160px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 5px;
+  display: none; /* Initially hidden */
+  position: relative;
+}
+
+#loading-bar {
+  width: 0%;
+  height: 100%;
+  background: var(--primary-green);
+  transition: width 0.5s ease-in-out;
+}
+
+#loading-message {
+  font-size: 0.8rem;
+  color: var(--white);
+  margin-top: 5px;
+  display: none; /* Initially hidden */
+}
+
+#shuffling-message {
+  font-size: 0.8rem;
+  color: var(--primary-green);
   display: none;
 }

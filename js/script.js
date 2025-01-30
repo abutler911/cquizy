@@ -13,17 +13,29 @@ questionNumberElement.classList.add("question-number");
 cardFront.appendChild(questionNumberElement);
 
 // Get status message elements
-const loadingMessage = document.getElementById("loading-message");
+const loadingBarContainer = document.getElementById("loading-bar-container");
+const loadingBar = document.getElementById("loading-bar");
+const loadingMessage = document.getElementById("loading-message"); // Fix: Define loadingMessage
 const shufflingMessage = document.getElementById("shuffling-message");
 
-// Hide shuffling message initially
+// Hide messages initially
 shufflingMessage.style.display = "none";
+loadingBarContainer.style.display = "none";
 
 let currentQuestionIndex = 0;
 let questions = [];
 
 async function fetchQuestions() {
-  loadingMessage.style.display = "block"; // Show loading
+  loadingBarContainer.style.display = "block"; // Show loading bar
+  loadingMessage.style.display = "block";
+  loadingBar.style.width = "0%";
+
+  let progress = 0;
+  const interval = setInterval(() => {
+    progress += 10;
+    loadingBar.style.width = `${progress}%`;
+    if (progress >= 100) clearInterval(interval);
+  }, 200);
 
   try {
     const response = await fetch(
@@ -40,7 +52,13 @@ async function fetchQuestions() {
     }
 
     questions = await response.json();
-    loadingMessage.style.display = "none"; // Hide loading
+    clearInterval(interval);
+    loadingBar.style.width = "100%";
+
+    setTimeout(() => {
+      loadingBarContainer.style.display = "none";
+      loadingMessage.style.display = "none";
+    }, 500);
 
     if (questions.length > 0) {
       loadQuestion(0);
@@ -130,7 +148,7 @@ rightArrow.addEventListener("click", () => {
 
 function shuffleQuestions() {
   flipCardBack(() => {
-    shufflingMessage.style.display = "block"; // Show "Shuffling..."
+    shufflingMessage.style.display = "block";
 
     setTimeout(() => {
       for (let i = questions.length - 1; i > 0; i--) {
@@ -140,8 +158,8 @@ function shuffleQuestions() {
       currentQuestionIndex = 0;
       loadQuestion(currentQuestionIndex);
 
-      shufflingMessage.style.display = "none"; // Hide "Shuffling..."
-    }, 1500); // Shuffling effect for 1.5s
+      shufflingMessage.style.display = "none";
+    }, 1000);
   });
 }
 
