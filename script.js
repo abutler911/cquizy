@@ -12,19 +12,18 @@ const questionNumberElement = document.createElement("div");
 questionNumberElement.classList.add("question-number");
 cardFront.appendChild(questionNumberElement);
 
+// Create loading message
+const loadingMessage = document.createElement("div");
+loadingMessage.classList.add("loading-message");
+loadingMessage.textContent = "Loading questions...";
+cardFront.appendChild(loadingMessage);
+
 let currentQuestionIndex = 0;
 let questions = [];
 
-const messages = [
-  "TFAYD",
-  "2025 CQ! Let's go!",
-  "You're Amazing!",
-  "Keep it up!",
-  "You're doing great!",
-  "Keep at it!",
-];
-
 async function fetchQuestions() {
+  loadingMessage.style.display = "block";
+
   try {
     const response = await fetch(
       "https://cquizy-api.onrender.com/api/questions",
@@ -40,11 +39,16 @@ async function fetchQuestions() {
     }
 
     questions = await response.json();
+    loadingMessage.style.display = "none";
+
     if (questions.length > 0) {
       loadQuestion(0);
+    } else {
+      questionElement.textContent = "No questions available.";
     }
   } catch (error) {
     console.error("Error fetching questions:", error);
+    loadingMessage.textContent = "Error loading questions!";
   }
 }
 
