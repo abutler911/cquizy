@@ -12,11 +12,17 @@ const questionNumberElement = document.createElement("div");
 questionNumberElement.classList.add("question-number");
 cardFront.appendChild(questionNumberElement);
 
-// Create loading message
+// Create loading & shuffling messages
 const loadingMessage = document.createElement("div");
-loadingMessage.classList.add("loading-message");
+loadingMessage.classList.add("status-message");
 loadingMessage.textContent = "Loading questions...";
 cardFront.appendChild(loadingMessage);
+
+const shufflingMessage = document.createElement("div");
+shufflingMessage.classList.add("status-message");
+shufflingMessage.textContent = "Shuffling...";
+shufflingMessage.style.display = "none";
+cardFront.appendChild(shufflingMessage);
 
 let currentQuestionIndex = 0;
 let questions = [];
@@ -129,7 +135,7 @@ rightArrow.addEventListener("click", () => {
 
 function shuffleQuestions() {
   flipCardBack(() => {
-    cardInner.classList.add("fade-out");
+    shufflingMessage.style.display = "block";
 
     setTimeout(() => {
       for (let i = questions.length - 1; i > 0; i--) {
@@ -139,10 +145,11 @@ function shuffleQuestions() {
       currentQuestionIndex = 0;
       loadQuestion(currentQuestionIndex);
 
-      cardInner.classList.remove("fade-out");
+      shufflingMessage.style.display = "none";
+
       cardInner.classList.add("fade-in");
       setTimeout(() => cardInner.classList.remove("fade-in"), 500);
-    }, 500);
+    }, 1000);
   });
 }
 
