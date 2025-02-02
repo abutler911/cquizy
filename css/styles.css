@@ -111,3 +111,13 @@ h2 {
   color: var(--primary-green);
   display: none;
 }
+
+/* Override spinner color */
+.spinner-border {
+  color: var(--primary-green) !important;
+}
+
+/* If you want to adjust the border color more specifically */
+.spinner-border::after {
+  border-top-color: var(--primary-green) !important;
+}

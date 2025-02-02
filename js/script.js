@@ -12,30 +12,23 @@ const questionNumberElement = document.createElement("div");
 questionNumberElement.classList.add("question-number");
 cardFront.appendChild(questionNumberElement);
 
-// Get status message elements
-const loadingBarContainer = document.getElementById("loading-bar-container");
-const loadingBar = document.getElementById("loading-bar");
-const loadingMessage = document.getElementById("loading-message"); // Fix: Define loadingMessage
+// Get status message element for the spinner
+const spinnerContainer = document.getElementById("spinner-container");
+// Get shuffling message element
 const shufflingMessage = document.getElementById("shuffling-message");
 
-// Hide messages initially
+// Hide spinner and shuffling message initially
+spinnerContainer.style.setProperty("display", "none", "important");
+
 shufflingMessage.style.display = "none";
-loadingBarContainer.style.display = "none";
 
 let currentQuestionIndex = 0;
 let questions = [];
 
 async function fetchQuestions() {
-  loadingBarContainer.style.display = "block"; // Show loading bar
-  loadingMessage.style.display = "block";
-  loadingBar.style.width = "0%";
-
-  let progress = 0;
-  const interval = setInterval(() => {
-    progress += 10;
-    loadingBar.style.width = `${progress}%`;
-    if (progress >= 100) clearInterval(interval);
-  }, 200);
+  console.log("Starting fetchQuestions");
+  spinnerContainer.style.display = "flex";
+  console.log("Spinner should be visible now");
 
   try {
     const response = await fetch(
@@ -46,19 +39,18 @@ async function fetchQuestions() {
         headers: { "Content-Type": "application/json" },
       }
     );
+    console.log("Fetch response received");
 
     if (!response.ok) {
       throw new Error(`Failed to fetch questions: ${response.statusText}`);
     }
 
     questions = await response.json();
-    clearInterval(interval);
-    loadingBar.style.width = "100%";
+    console.log("Questions fetched:", questions);
 
-    setTimeout(() => {
-      loadingBarContainer.style.display = "none";
-      loadingMessage.style.display = "none";
-    }, 500);
+    // Hide spinner once loading is complete
+    spinnerContainer.style.display = "none";
+    console.log("Spinner hidden");
 
     if (questions.length > 0) {
       loadQuestion(0);
@@ -67,7 +59,7 @@ async function fetchQuestions() {
     }
   } catch (error) {
     console.error("Error fetching questions:", error);
-    loadingMessage.textContent = "Error loading questions!";
+    spinnerContainer.style.display = "none";
   }
 }
 
@@ -75,7 +67,8 @@ function loadQuestion(index) {
   if (index >= 0 && index < questions.length) {
     const { category, context, question, answer } = questions[index];
     categoryElement.textContent = category;
-    questionContextElement.textContent = `Context: ${context}` || context;
+    // Use context text directly (or "Context: ..." if needed)
+    questionContextElement.textContent = context ? `Context: ${context}` : "";
     questionElement.textContent = question;
     answerElement.textContent = answer;
     questionNumberElement.textContent = `${index + 1} of ${questions.length}`;
