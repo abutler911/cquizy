@@ -64,6 +64,6 @@
 
 .green-btn:hover {
   color: var(--white);
-  transform: scale(1.05);
-  background-color: var(--primary-green);
+  transform: scale(1.07);
+  background-color: #9c0f7b;
 }

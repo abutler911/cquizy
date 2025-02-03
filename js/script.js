@@ -1,3 +1,4 @@
+// DOM Elements
 const cardFront = document.querySelector(".card-front");
 const cardBack = document.querySelector(".card-back");
 const cardInner = document.querySelector(".card-inner");
@@ -13,29 +14,27 @@ questionNumberElement.classList.add("question-number");
 cardFront.appendChild(questionNumberElement);
 const bookmarkButton = document.querySelector(".bookmark-btn");
 const reviewLaterButton = document.getElementById("review-later-btn");
-bookmarkButton.addEventListener("click", toggleBookmark);
 
+// Status Messages
+const spinnerContainer = document.getElementById("spinner-container");
+const shufflingMessage = document.getElementById("shuffling-message");
+
+// Hide initially
+spinnerContainer.style.display = "none";
+shufflingMessage.style.display = "none";
+
+// State Management
+let currentQuestionIndex = 0;
+let questions = [];
 let bookmarkedQuestions =
   JSON.parse(localStorage.getItem("bookmarkedQuestions")) || [];
 let reviewingBookmarks = false;
 
-// Get status message element for the spinner
-const spinnerContainer = document.getElementById("spinner-container");
-// Get shuffling message element
-const shufflingMessage = document.getElementById("shuffling-message");
-
-// Hide spinner and shuffling message initially
-spinnerContainer.style.setProperty("display", "none", "important");
-
-shufflingMessage.style.display = "none";
-
-let currentQuestionIndex = 0;
-let questions = [];
-
+/* ==========================
+   ✅ Fetch Questions from API 
+   ========================== */
 async function fetchQuestions() {
-  console.log("Starting fetchQuestions");
-  spinnerContainer.style.display = "flex";
-  console.log("Spinner should be visible now");
+  spinnerContainer.style.display = "flex"; // Show loading spinner
 
   try {
     const response = await fetch(
@@ -46,18 +45,12 @@ async function fetchQuestions() {
         headers: { "Content-Type": "application/json" },
       }
     );
-    console.log("Fetch response received");
 
-    if (!response.ok) {
+    if (!response.ok)
       throw new Error(`Failed to fetch questions: ${response.statusText}`);
-    }
 
     questions = await response.json();
-    console.log("Questions fetched:", questions);
-
-    // Hide spinner once loading is complete
-    spinnerContainer.style.display = "none";
-    console.log("Spinner hidden");
+    spinnerContainer.style.display = "none"; // Hide loading spinner
 
     if (questions.length > 0) {
       loadQuestion(0);
@@ -70,30 +63,33 @@ async function fetchQuestions() {
   }
 }
 
+/* ==========================
+   ✅ Load Question 
+   ========================== */
 function loadQuestion(index) {
-  if (index >= 0 && index < questions.length) {
-    const { category, context, question, answer } = questions[index];
-    categoryElement.textContent = category;
-    // Use context text directly (or "Context: ..." if needed)
-    questionContextElement.textContent = context ? `Context: ${context}` : "";
-    questionElement.textContent = question;
-    answerElement.textContent = answer;
-    questionNumberElement.textContent = `${index + 1} of ${questions.length}`;
-    cardInner.classList.remove("is-flipped");
-
-    gsap.fromTo(
-      cardInner,
-      { opacity: 0, y: 50 },
-      { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }
-    );
-  } else {
-    categoryElement.textContent = "";
+  if (index < 0 || index >= questions.length) {
     questionElement.textContent = "No more questions!";
     answerElement.textContent = "End of cards";
     questionNumberElement.textContent = "";
+    return;
   }
+
+  const { _id, category, context, question, answer } = questions[index];
+
+  categoryElement.textContent = category;
+  questionContextElement.textContent = context ? `Context: ${context}` : "";
+  questionElement.textContent = question;
+  answerElement.textContent = answer;
+  questionNumberElement.textContent = `${index + 1} of ${questions.length}`;
+
+  cardInner.classList.remove("is-flipped");
+
+  updateBookmarkIcon(_id);
 }
 
+/* ==========================
+   ✅ Flip Card Logic
+   ========================== */
 function flipCardBack(callback) {
   if (cardInner.classList.contains("is-flipped")) {
     gsap.to(cardInner, {
@@ -128,6 +124,9 @@ cardInner.addEventListener("click", () => {
   }
 });
 
+/* ==========================
+   ✅ Navigation Controls
+   ========================== */
 leftArrow.addEventListener("click", () => {
   if (currentQuestionIndex > 0) {
     flipCardBack(() => {
@@ -146,18 +145,17 @@ rightArrow.addEventListener("click", () => {
   }
 });
 
+/* ==========================
+   ✅ Shuffle Questions
+   ========================== */
 function shuffleQuestions() {
   flipCardBack(() => {
     shufflingMessage.style.display = "block";
 
     setTimeout(() => {
-      for (let i = questions.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [questions[i], questions[j]] = [questions[j], questions[i]];
-      }
+      questions.sort(() => Math.random() - 0.5);
       currentQuestionIndex = 0;
       loadQuestion(currentQuestionIndex);
-
       shufflingMessage.style.display = "none";
     }, 1000);
   });
@@ -167,6 +165,64 @@ document
   .getElementById("randomize-btn")
   .addEventListener("click", shuffleQuestions);
 
+/* ==========================
+   ✅ Bookmark Functionality 
+   ========================== */
+function toggleBookmark(event) {
+  event.stopPropagation(); // Prevents card flipping
+
+  const currentQuestionId = questions[currentQuestionIndex]._id;
+
+  if (bookmarkedQuestions.includes(currentQuestionId)) {
+    bookmarkedQuestions = bookmarkedQuestions.filter(
+      (id) => id !== currentQuestionId
+    );
+  } else {
+    bookmarkedQuestions.push(currentQuestionId);
+  }
+
+  localStorage.setItem(
+    "bookmarkedQuestions",
+    JSON.stringify(bookmarkedQuestions)
+  );
+  updateBookmarkIcon(currentQuestionId);
+}
+
+function updateBookmarkIcon(questionId) {
+  if (bookmarkedQuestions.includes(questionId)) {
+    bookmarkButton.classList.add("active");
+  } else {
+    bookmarkButton.classList.remove("active");
+  }
+}
+
+bookmarkButton.addEventListener("click", toggleBookmark);
+
+/* ==========================
+   ✅ Review Bookmarked Questions
+   ========================== */
+let fullQuestionSet = [];
+
+function showBookmarkedQuestions() {
+  if (!reviewingBookmarks) {
+    fullQuestionSet = [...questions]; // Store full set
+    questions = questions.filter((q) => bookmarkedQuestions.includes(q._id));
+    reviewLaterButton.textContent = "Back to All";
+    reviewingBookmarks = true;
+  } else {
+    questions = [...fullQuestionSet]; // Restore full set
+    reviewLaterButton.textContent = "Review Later";
+    reviewingBookmarks = false;
+  }
+  currentQuestionIndex = 0;
+  loadQuestion(currentQuestionIndex);
+}
+
+reviewLaterButton.addEventListener("click", showBookmarkedQuestions);
+
+/* ==========================
+   ✅ Button Animations
+   ========================== */
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
     gsap.to(button, { duration: 0.2, scale: 0.9, ease: "power1.inOut" });
@@ -179,53 +235,7 @@ buttons.forEach((button) => {
   });
 });
 
-function toggleBookmark(event) {
-  event.stopPropagation();
-
-  const currentQuestion = questions[currentQuestionIndex].question;
-
-  if (bookmarkedQuestions.includes(currentQuestion)) {
-    bookmarkedQuestions = bookmarkedQuestions.filter(
-      (q) => q !== currentQuestion
-    );
-  } else {
-    bookmarkedQuestions.push(currentQuestion);
-  }
-
-  localStorage.setItem(
-    "bookmarkedQuestions",
-    JSON.stringify(bookmarkedQuestions)
-  );
-  updateBookmarkIcon();
-}
-
-function updateBookmarkIcon() {
-  const currentQuestion = questions[currentQuestionIndex].question;
-  if (bookmarkedQuestions.includes(currentQuestion)) {
-    bookmarkButton.classList.add("active");
-  } else {
-    bookmarkButton.classList.remove("active");
-  }
-}
-
-function showBookmarkedQuestions() {
-  if (!reviewingBookmarks) {
-    // Filter only bookmarked questions
-    questions = questions.filter((q) =>
-      bookmarkedQuestions.includes(q.question)
-    );
-    reviewingBookmarks = true;
-    reviewLaterButton.textContent = "Back to All";
-  } else {
-    // Reload full question set from API
-    fetchQuestions();
-    reviewingBookmarks = false;
-    reviewLaterButton.textContent = "Review Later";
-  }
-  currentQuestionIndex = 0;
-  loadQuestion(currentQuestionIndex);
-}
-
-reviewLaterButton.addEventListener("click", showBookmarkedQuestions);
-
+/* ==========================
+   ✅ Initialize App
+   ========================== */
 fetchQuestions();
