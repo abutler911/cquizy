@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   background-color: rgba(29, 29, 29, 0.5);
-  border: 1px solid var(--primary-green);
+  border: 1px solid var(--primary-purple);
   border-radius: 15px;
   padding: 12px 15px;
   width: 100%;
@@ -21,25 +21,20 @@
   padding: 5px 10px;
 }
 
-.arrow-btn,
-.randomize-btn,
-.green-btn {
-  background-color: var(--primary-green);
+.button-group button {
+  background-color: var(--primary-purple);
   border: none;
   cursor: pointer;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s, background 0.3s ease-in-out;
-}
-
-.arrow-btn {
-  color: var(--white);
-  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 50%;
 }
 
-.arrow-btn {
+.arrow-btn,
+.randomize-btn {
   width: 60px;
   height: 60px;
   font-size: 1.4rem;
@@ -48,21 +43,12 @@
 .randomize-btn {
   width: 50px;
   height: 50px;
-  background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 50%;
-  transition: all 0.2s ease-in-out;
+  background-color: rgba(196, 196, 196, 0.9) !important;
 }
 
-.arrow-btn:hover,
-.randomize-btn:hover,
-.green-btn:hover {
-  background-color: var(--dark-green);
+.button-group button:hover {
+  background-color: #9c0f7b;
   transform: scale(1.1);
-}
-
-.arrow-btn i,
-.randomize-btn i {
-  font-size: 1.4rem;
 }
 
 .green-btn {
@@ -73,9 +59,11 @@
   border-radius: 8px;
   width: 177px;
   padding: 3px;
+  background-color: var(--primary-purple);
 }
 
 .green-btn:hover {
   color: var(--white);
   transform: scale(1.05);
+  background-color: var(--primary-green);
 }
