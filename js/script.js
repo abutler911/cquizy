@@ -11,6 +11,13 @@ const answerElement = cardBack.querySelector(".answer");
 const questionNumberElement = document.createElement("div");
 questionNumberElement.classList.add("question-number");
 cardFront.appendChild(questionNumberElement);
+const bookmarkButton = document.querySelector(".bookmark-btn");
+const reviewLaterButton = document.getElementById("review-later-btn");
+bookmarkButton.addEventListener("click", toggleBookmark);
+
+let bookmarkedQuestions =
+  JSON.parse(localStorage.getItem("bookmarkedQuestions")) || [];
+let reviewingBookmarks = false;
 
 // Get status message element for the spinner
 const spinnerContainer = document.getElementById("spinner-container");
@@ -171,5 +178,54 @@ buttons.forEach((button) => {
     });
   });
 });
+
+function toggleBookmark(event) {
+  event.stopPropagation();
+
+  const currentQuestion = questions[currentQuestionIndex].question;
+
+  if (bookmarkedQuestions.includes(currentQuestion)) {
+    bookmarkedQuestions = bookmarkedQuestions.filter(
+      (q) => q !== currentQuestion
+    );
+  } else {
+    bookmarkedQuestions.push(currentQuestion);
+  }
+
+  localStorage.setItem(
+    "bookmarkedQuestions",
+    JSON.stringify(bookmarkedQuestions)
+  );
+  updateBookmarkIcon();
+}
+
+function updateBookmarkIcon() {
+  const currentQuestion = questions[currentQuestionIndex].question;
+  if (bookmarkedQuestions.includes(currentQuestion)) {
+    bookmarkButton.classList.add("active");
+  } else {
+    bookmarkButton.classList.remove("active");
+  }
+}
+
+function showBookmarkedQuestions() {
+  if (!reviewingBookmarks) {
+    // Filter only bookmarked questions
+    questions = questions.filter((q) =>
+      bookmarkedQuestions.includes(q.question)
+    );
+    reviewingBookmarks = true;
+    reviewLaterButton.textContent = "Back to All";
+  } else {
+    // Reload full question set from API
+    fetchQuestions();
+    reviewingBookmarks = false;
+    reviewLaterButton.textContent = "Review Later";
+  }
+  currentQuestionIndex = 0;
+  loadQuestion(currentQuestionIndex);
+}
+
+reviewLaterButton.addEventListener("click", showBookmarkedQuestions);
 
 fetchQuestions();
