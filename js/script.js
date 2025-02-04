@@ -34,31 +34,38 @@ let reviewingBookmarks = false;
    ✅ Fetch Questions from API 
    ========================== */
 async function fetchQuestions() {
-  spinnerContainer.style.display = "flex"; // Show loading spinner
+  console.log("Starting fetchQuestions...");
+  spinnerContainer.style.display = "flex";
 
   try {
     const response = await fetch(
       "https://cquizy-api.onrender.com/api/questions",
       {
         method: "GET",
-        credentials: "include",
+        credentials: "include", // Check if needed
         headers: { "Content-Type": "application/json" },
       }
     );
 
-    if (!response.ok)
-      throw new Error(`Failed to fetch questions: ${response.statusText}`);
-
-    questions = await response.json();
-    spinnerContainer.style.display = "none"; // Hide loading spinner
-
-    if (questions.length > 0) {
-      loadQuestion(0);
-    } else {
-      questionElement.textContent = "No questions available.";
+    if (!response.ok) {
+      throw new Error(
+        `Server error: ${response.status} - ${response.statusText}`
+      );
     }
+
+    const data = await response.json();
+    console.log("Questions fetched:", data);
+
+    if (!Array.isArray(data) || data.length === 0) {
+      throw new Error("No questions available or incorrect format.");
+    }
+
+    questions = data;
+    loadQuestion(0);
   } catch (error) {
     console.error("Error fetching questions:", error);
+    alert(`Failed to load questions: ${error.message}`);
+  } finally {
     spinnerContainer.style.display = "none";
   }
 }
