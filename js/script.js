@@ -30,9 +30,6 @@ let bookmarkedQuestions =
   JSON.parse(localStorage.getItem("bookmarkedQuestions")) || [];
 let reviewingBookmarks = false;
 
-/* ==========================
-   ✅ Fetch Questions from API 
-   ========================== */
 async function fetchQuestions() {
   console.log("Starting fetchQuestions...");
   spinnerContainer.style.display = "flex";
@@ -42,7 +39,7 @@ async function fetchQuestions() {
       "https://cquizy-api.onrender.com/api/questions",
       {
         method: "GET",
-        credentials: "include", // Check if needed
+        credentials: "include",
         headers: { "Content-Type": "application/json" },
       }
     );
@@ -70,9 +67,6 @@ async function fetchQuestions() {
   }
 }
 
-/* ==========================
-   ✅ Load Question 
-   ========================== */
 function loadQuestion(index) {
   if (index < 0 || index >= questions.length) {
     questionElement.textContent = "No more questions!";
@@ -94,9 +88,6 @@ function loadQuestion(index) {
   updateBookmarkIcon(_id);
 }
 
-/* ==========================
-   ✅ Flip Card Logic
-   ========================== */
 function flipCardBack(callback) {
   if (cardInner.classList.contains("is-flipped")) {
     gsap.to(cardInner, {
@@ -131,9 +122,6 @@ cardInner.addEventListener("click", () => {
   }
 });
 
-/* ==========================
-   ✅ Navigation Controls
-   ========================== */
 leftArrow.addEventListener("click", () => {
   if (currentQuestionIndex > 0) {
     flipCardBack(() => {
@@ -152,9 +140,6 @@ rightArrow.addEventListener("click", () => {
   }
 });
 
-/* ==========================
-   ✅ Shuffle Questions
-   ========================== */
 function shuffleQuestions() {
   flipCardBack(() => {
     shufflingMessage.style.display = "block";
@@ -172,9 +157,6 @@ document
   .getElementById("randomize-btn")
   .addEventListener("click", shuffleQuestions);
 
-/* ==========================
-   ✅ Bookmark Functionality 
-   ========================== */
 function toggleBookmark(event) {
   event.stopPropagation(); // Prevents card flipping
 
@@ -205,19 +187,16 @@ function updateBookmarkIcon(questionId) {
 
 bookmarkButton.addEventListener("click", toggleBookmark);
 
-/* ==========================
-   ✅ Review Bookmarked Questions
-   ========================== */
 let fullQuestionSet = [];
 
 function showBookmarkedQuestions() {
   if (!reviewingBookmarks) {
-    fullQuestionSet = [...questions]; // Store full set
+    fullQuestionSet = [...questions];
     questions = questions.filter((q) => bookmarkedQuestions.includes(q._id));
     reviewLaterButton.textContent = "Back to All";
     reviewingBookmarks = true;
   } else {
-    questions = [...fullQuestionSet]; // Restore full set
+    questions = [...fullQuestionSet];
     reviewLaterButton.textContent = "Review Later";
     reviewingBookmarks = false;
   }
@@ -227,9 +206,6 @@ function showBookmarkedQuestions() {
 
 reviewLaterButton.addEventListener("click", showBookmarkedQuestions);
 
-/* ==========================
-   ✅ Button Animations
-   ========================== */
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
     gsap.to(button, { duration: 0.2, scale: 0.9, ease: "power1.inOut" });
@@ -242,7 +218,4 @@ buttons.forEach((button) => {
   });
 });
 
-/* ==========================
-   ✅ Initialize App
-   ========================== */
 fetchQuestions();
