@@ -31,7 +31,6 @@ let bookmarkedQuestions =
 let reviewingBookmarks = false;
 
 async function fetchQuestions() {
-  console.log("Starting fetchQuestions...");
   spinnerContainer.style.display = "flex";
 
   try {
@@ -51,7 +50,6 @@ async function fetchQuestions() {
     }
 
     const data = await response.json();
-    console.log("Questions fetched:", data);
 
     if (!Array.isArray(data) || data.length === 0) {
       throw new Error("No questions available or incorrect format.");
