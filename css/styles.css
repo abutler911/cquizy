@@ -45,6 +45,15 @@ h2 {
   text-align: center;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
+
+#v-speed {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+.accordion-header {
+  font-family: "Red Hat Text", sans-serif;
+  font-size: 1.4rem;
+}
 #instructions {
   font-size: 0.8rem;
   color: var(--border-light);
